@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.21">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Travis Belote">
+
+<title>Lab 3. BIOE 515: Landscape Ecology &amp; Management.</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="Lab 3_files/libs/clipboard/clipboard.min.js"></script>
+<script src="Lab 3_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="Lab 3_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="Lab 3_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="Lab 3_files/libs/quarto-html/popper.min.js"></script>
+<script src="Lab 3_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="Lab 3_files/libs/quarto-html/anchor.min.js"></script>
+<link href="Lab 3_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="Lab 3_files/libs/quarto-html/quarto-syntax-highlighting-ea1d7ac60288e0f1efdbc993fd8432ae.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="Lab 3_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="Lab 3_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="Lab 3_files/libs/bootstrap/bootstrap-9e3ffae467580fdb927a41352e75a2e0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Lab 3. BIOE 515: Landscape Ecology &amp; Management.</h1>
+<p class="subtitle lead">Effects of scale: resolution and extent</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Travis Belote </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="background" class="level1">
+<h1>Background</h1>
+<p>“<em>The problem of pattern and scale is the central problem in ecology. There is no single natural scale at which ecological phenomena should be studied</em>.”&nbsp; - Simon Levin 1992</p>
+<p>In this lab we will be studying how different scales (resolution and extent) might influence patterns in our data and change the answers to our research questions. As reflected in the quote from Si Levin, scale is a central issue to how we study nature.</p>
+<p>Here, we will focus on extent and grain. <strong>Extent</strong> is the size of the area being considered and in ecological studies can vary from a small 1-m<sup>2</sup> plot to the entire planet. <strong>Grain</strong> refers to the size of the smallest sampling unit considered, which in spatial analysis usually refers to the size of pixels. Grain is often used interchangeably with ‘resolution’ (e.g., “we used 30-meter resolution data.” for our analysis). Aside from explicit considerations of scale, I hope that this code is useful in your data management and overall analysis too.</p>
+<p><img src="images/clipboard-2555399924.png" class="img-fluid"></p>
+<p>Some scientists, especially climate scientists, may “downscale” data from very coarse resolution to finer resolution using models relating variables like temperature to elevation. In other words, the grain (resolution) of global climate models are very coarse (i.e., large pixels), but data are downscaled to decrease the resolution to make the data useable for ecological or natural resource studies. See example for Alaska below.</p>
+<p><img src="images/clipboard-3531087862.png" class="img-fluid"></p>
+<p>This lab will not focus on downscaling, but if you work with climate data - especially future climate predictions - you should understand some of the methods and issues related to downscaling data. While we will not conduct any downscaling in class, we will adjust the grain (resolution) and extent of data.</p>
+<p>Two very common grains of spatial data are 30-meters (pixels are 30 meters by 30 meters, or about the size of the infield of a baseball diamond) or 1-km. Historically, the grain of the data increased with the extent (i.e., the larger the study area, the coarser the resolution of data). This was mostly due to computer processing limitations, but this will increasingly not be an issue. Even today, scientists work with and publish 30-meter data for the entire planet. You will find yourself in need of adjusting the resolution of data so that all data share the same resolution, to accommodate an analysis conducted at large extents, due to limitations in computer processing or time, etc.</p>
+<p><strong>Coarsening the resolution of raster data (upscaling): resample and aggregate.</strong></p>
+<p>Two common methods for coarsening your grain (or enlarging your resolution) are resampling or aggregating. Both of these methods are available in ArcGIS Pro and in the <code>terra</code> package in R.</p>
+<p>If you are only interested in coarsening your data, you would probably use <code>aggregate()</code>. If you want your data to match the resolution of another existing dataset, you would probably use resample.</p>
+<p>Both functions require that you decide what kind of operation you want to use to aggregate or resample from smaller pixels to larger pixels. The most important consideration in my opinion is whether the data are categorical or quantitative. <em>To coarsen quantitative data, you will probably be using “bilinear interpolation” or “mean” or some other function that calculates a summary value surrounding the center of a new pixel. This results in a dataset with coarser resolution that represents the central tendency of pixels. To coarsen categorical data, you will most likely be using a “nearest neighbor” or “modal” operation. It does not make sense to calculate the mean of a categorical or nominal variable.</em></p>
+<p>The cartoon below show how the finer resolution input raster can be “coarsened” to a new resolution with some operation (e.g., mean, mode, max, nearest neighbor).</p>
+<p><img src="images/clipboard-622018369.png" class="img-fluid"></p>
+<p>Nearest neighbor method:</p>
+<p><img src="images/clipboard-3632358449.png" class="img-fluid"></p>
+<p>Calculating the average (mean) to coarsen the resolution:</p>
+<p><img src="images/clipboard-2544022612.png" class="img-fluid"></p>
+<p>Using the maximum value:</p>
+<p><img src="images/clipboard-1845772860.png" class="img-fluid"></p>
+</section>
+<section id="exercise-1-does-the-landscape-composition-of-the-greater-yellowstone-ecosystem-vary-with-different-resolutions" class="level1">
+<h1><strong>Exercise 1: Does the landscape composition of the Greater Yellowstone Ecosystem vary with different resolutions?</strong></h1>
+<p>We will investigate how the composition of the landscape of the GYE might depend on the resolution of the data. You will learn to “upscale” categorical raster data using the aggregate function in terra with the “modal” option. “Modal” means that aggregate will take the mode (i.e., the most common value) of the finer resolution data and assign that mode to the coarser resolution. Our research question is: <em>How does the number of land cover classes and their relative abundance change with resolution?</em> If you are assessing the total amount of habitat for some species, you might want to know how sensitive your analysis could be to adjustments of resolution.</p>
+<p>First, load the <code>terra</code> and <code>tidyverse</code> libraries. If these libraries are not loaded onto your computer, use <code>install.packages(c("terra", "tidyverse")</code> first.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(terra) <span class="co"># for working with spatial data </span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>terra 1.8.60</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) <span class="co"># for data wrangling and plotting </span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ ggplot2   3.5.2     ✔ tibble    3.3.0
+✔ lubridate 1.9.4     ✔ tidyr     1.3.1
+✔ purrr     1.1.0     </code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ tidyr::extract() masks terra::extract()
+✖ dplyr::filter()  masks stats::filter()
+✖ dplyr::lag()     masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+</div>
+<p>Then, bring in the NLCD data from the GYE and plot the data, which should return a nice high resolution map of land cover for the Greater Yellowstone Ecosystem.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>nlcd_gye <span class="ot">&lt;-</span> <span class="fu">rast</span>(<span class="st">"C:/Users/travi/Dropbox/BIOE515_LandEcol_Man_Fall2025/Labs/Lab 2/Data/NLCD_2024_GYE.tif"</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># look at the data </span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(nlcd_gye)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lab-3_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Then, use <code>res()</code> to check the resolution of the data and <code>ncell()</code> to see how many total pixels are in the dataset.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="do">### Analysis on 30-m data (base)</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">res</span>(nlcd_gye) <span class="co"># double check the resolution</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 30 30</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ncell</span>(nlcd_gye) <span class="co"># how many grid cells (pixels) are there?</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 152896464</code></pre>
+</div>
+</div>
+<p>Next, we will create a simple table of land cover types, number of pixels, and the percent of the total GYE that is in each land cover. There may be a better way to do this in R, but I will use <code>freq</code> to count the number of pixels in each land cover type. Then, I will <code>cats</code> to return the attribute table with the land cover names.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">freq</span>(nlcd_gye) <span class="co"># this provide the count (number of pixels per class)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   layer value    count
+1      1     0  1244423
+2      1     1    69695
+3      1     2   734688
+4      1     3   712450
+5      1     4   108581
+6      1     5    10687
+7      1     6  2582946
+8      1     7   727260
+9      1     8 36029052
+10     1     9    10436
+11     1    10 43433796
+12     1    11  7937463
+13     1    12  1624076
+14     1    13  3414208
+15     1    14  1388396
+16     1    15  1882082</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cats</span>(nlcd_gye)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+   Value OID_1 Value_1 Pixel_Valu Red Green Blue Opacity
+1     11     0       0         11  70   107  159     255
+2     12     1       1         12 209   222  248     255
+3     21     2       2         21 222   197  197     255
+4     22     3       3         22 217   146  130     255
+5     23     4       4         23 235     0    0     255
+6     24     5       5         24 171     0    0     255
+7     31     6       6         31 179   172  159     255
+8     41     7       7         41 104   171   95     255
+9     42     8       8         42  28    95   44     255
+10    43     9       9         43 181   197  143     255
+11    52    10      10         52 204   184  121     255
+12    71    11      11         71 223   223  194     255
+13    81    12      12         81 220   217   57     255
+14    82    13      13         82 171   108   40     255
+15    90    14      14         90 184   217  235     255
+16    95    15      15         95 108   159  184     255
+                      NLCD_Land
+1                    Open Water
+2            Perennial Ice/Snow
+3         Developed, Open Space
+4      Developed, Low Intensity
+5   Developed, Medium Intensity
+6     Developed, High Intensity
+7                   Barren Land
+8              Deciduous Forest
+9              Evergreen Forest
+10                 Mixed Forest
+11                  Shrub/Scrub
+12         Grassland/Herbaceous
+13                  Pasture/Hay
+14             Cultivated Crops
+15               Woody Wetlands
+16 Emergent Herbaceous Wetlands</code></pre>
+</div>
+</div>
+<p>We need to join these two tables together. Notice the relationship between “value” and “Value_1”; these are both unique identifiers for the rows, which allows us to “join” the table created in <code>cat</code> with the table created in <code>freq</code>.</p>
+<p>First, we have to put those tables in a dataframe object, then use <code>left_join()</code> to merge the two dataframes. This allows us to create an easier-to-use table that has the NLCD land cover class with the count of pixels for that class.</p>
+<p>NOTE: I like to use “pipes” in my code, which look like this <code>%&gt;%</code>. This makes your code more readable, in my experience. In the first case below, the code can be read as “take nlcd_gye calculate the frequency using <code>freq</code> and then turn it into a drataframe. You could do the exact same thing like this <code>as.data.frame(freq(nlcd_gye))</code>, but I think”piping” makes things clearer by avoiding the “nested” code.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create the two dataframes</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>count30m <span class="ot">&lt;-</span> nlcd_gye <span class="sc">%&gt;%</span> <span class="fu">freq</span>() <span class="sc">%&gt;%</span> <span class="fu">as.data.frame</span>() </span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>table30m <span class="ot">&lt;-</span> nlcd_gye <span class="sc">%&gt;%</span> <span class="fu">cats</span>() <span class="sc">%&gt;%</span> <span class="fu">as.data.frame</span>() </span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co"># join them noting that "Value_1" in table30m is the same variable as "value" in the count30m</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>table30m <span class="sc">%&gt;%</span> <span class="fu">left_join</span>(count30m, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"Value_1"</span> <span class="ot">=</span> <span class="st">"value"</span>)) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Value OID_1 Value_1 Pixel_Valu Red Green Blue Opacity
+1     11     0       0         11  70   107  159     255
+2     12     1       1         12 209   222  248     255
+3     21     2       2         21 222   197  197     255
+4     22     3       3         22 217   146  130     255
+5     23     4       4         23 235     0    0     255
+6     24     5       5         24 171     0    0     255
+7     31     6       6         31 179   172  159     255
+8     41     7       7         41 104   171   95     255
+9     42     8       8         42  28    95   44     255
+10    43     9       9         43 181   197  143     255
+11    52    10      10         52 204   184  121     255
+12    71    11      11         71 223   223  194     255
+13    81    12      12         81 220   217   57     255
+14    82    13      13         82 171   108   40     255
+15    90    14      14         90 184   217  235     255
+16    95    15      15         95 108   159  184     255
+                      NLCD_Land layer    count
+1                    Open Water     1  1244423
+2            Perennial Ice/Snow     1    69695
+3         Developed, Open Space     1   734688
+4      Developed, Low Intensity     1   712450
+5   Developed, Medium Intensity     1   108581
+6     Developed, High Intensity     1    10687
+7                   Barren Land     1  2582946
+8              Deciduous Forest     1   727260
+9              Evergreen Forest     1 36029052
+10                 Mixed Forest     1    10436
+11                  Shrub/Scrub     1 43433796
+12         Grassland/Herbaceous     1  7937463
+13                  Pasture/Hay     1  1624076
+14             Cultivated Crops     1  3414208
+15               Woody Wetlands     1  1388396
+16 Emergent Herbaceous Wetlands     1  1882082</code></pre>
+</div>
+</div>
+<p>Let’s clean up that table by selecting only the variables of interest. Recall from Lab 2 that the relative proportion of different ecological types or land cover classes is a straightforward way to assess the composition of landscapes.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>table30m <span class="sc">%&gt;%</span> <span class="fu">left_join</span>(count30m, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"Value_1"</span> <span class="ot">=</span> <span class="st">"value"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">pct =</span> count<span class="sc">/</span><span class="fu">sum</span>(count)<span class="sc">*</span><span class="dv">100</span>) <span class="sc">%&gt;%</span>  </span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(NLCD_Land, pct)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                      NLCD_Land         pct
+1                    Open Water  1.22109713
+2            Perennial Ice/Snow  0.06838861
+3         Developed, Open Space  0.72091677
+4      Developed, Low Intensity  0.69909560
+5   Developed, Medium Intensity  0.10654572
+6     Developed, High Intensity  0.01048668
+7                   Barren Land  2.53453041
+8              Deciduous Forest  0.71362800
+9              Evergreen Forest 35.35371161
+10                 Mixed Forest  0.01024038
+11                  Shrub/Scrub 42.61965866
+12         Grassland/Herbaceous  7.78868059
+13                  Pasture/Hay  1.59363379
+14             Cultivated Crops  3.35021096
+15               Woody Wetlands  1.36237145
+16 Emergent Herbaceous Wetlands  1.84680364</code></pre>
+</div>
+</div>
+<p>Now that we’ve assessed the composition of the landscape using the 30-meter data, let’s use <code>aggregaget()</code> to coarsen the data (i.e., increase the size of the pixels and decrease the number of pixels) to see how our assessment of landscape composition changes with spatial grain (or resolution). We’ll do this using a factor of 10 (increasing the size of the pixels to 300-meters), 100 (pixels = 3000-meters), and 1000 (pixels = 30,000-meters). We will use the modal function, which uses the mode (most common value or type) to assign the new pixels a land cover class.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>nlcd_gye10 <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(nlcd_gye, <span class="dv">10</span>, <span class="at">fun =</span>  <span class="st">"modal"</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+|---------|---------|---------|---------|
+=========================================
+                                          </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>nlcd_gye100 <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(nlcd_gye, <span class="dv">100</span>, <span class="at">fun =</span>  <span class="st">"modal"</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>nlcd_gye1000 <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(nlcd_gye, <span class="dv">1000</span>, <span class="at">fun =</span>  <span class="st">"modal"</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Let’s look at the land cover maps with different resolutions.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># this tells R you want to create a multi-figure plot with 2 rows and 2 columns</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>)) </span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Now, plot all four maps. </span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(nlcd_gye)</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(nlcd_gye10)</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(nlcd_gye100)</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(nlcd_gye1000)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lab-3_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip no-icon">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>TASK 1 (10 points).</strong></p>
+<p>Now, repeat the steps above that we used for the original 30-meter dataset and report the (1) resolution, (2) number of pixels, (3) percent of each land cover class in the GYE based on the different resolutions. See if you can create a clean table where land cover classes are the rows and your columns are the percentages for the 4 different resolutions? You can report total pixels in a Table caption or in parentheses in the column header.</p>
+<p>Your goal here is to make a table suitable for a paper clearly organized and with an informative caption. I am a fan of “stand alone” captions for figures and tables. These are captions that describe and interpret the results. Consider the consequences of coarsening the resolution. When would the coarsest map of land cover be useful? When do you absolutely need the highest resolution data? Add some of these insights to your figure caption.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="exercise-2-does-the-relationship-between-bird-diversity-and-net-primary-productivity-vary-with-extent-and-grain-of-analysis" class="level1">
+<h1>Exercise 2: Does the relationship between bird diversity and net primary productivity vary with extent and grain of analysis?</h1>
+<p>A long history of ecological research has explored the mechanisms explaining why some places host more species than others. One compelling line of research suggests that biodiversity (the number of species in an area) should be positively related to ecosystem productivity (the amount of carbon captured through photosynthesis). Some ecologists have suggested that more energy captured in highly productive areas can be divided among more species, compared to ecosystems of lower productivity. We’re going to use data on <a href="https://www.sciencebase.gov/catalog/item/5bef368de4b045bfcadf73bd">bird species richness</a> and <a href="https://www.umt.edu/numerical-terradynamic-simulation-group/project/landsat/landsat-productivity.php">net primary productivity</a> (NPP) to investigate these patterns for the GYE and examine whether the resolution and extent of the spatial data change our results and interpretations.</p>
+<p>Make sure you have the <code>terra</code> and <code>tidyverse</code> packages loaded and bring the data into R.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(terra)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co"># now just use filenames to load the data for the bird richness and npp</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>bird   <span class="ot">&lt;-</span> <span class="fu">rast</span>(<span class="st">"Z:/Teaching/BIOE515_LandEcol_Man_Fall2025/Labs/Lab 3/Data/bird_richness_GYE.tif"</span>)</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>npp    <span class="ot">&lt;-</span> <span class="fu">rast</span>(<span class="st">"Z:/Teaching/BIOE515_LandEcol_Man_Fall2025/Labs/Lab 3/Data/NPP2016_GYE.tif"</span>)</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="co"># let's also bring in elevation and data on ecoregions</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>elev   <span class="ot">&lt;-</span> <span class="fu">rast</span>(<span class="st">"Z:/Teaching/BIOE515_LandEcol_Man_Fall2025/Labs/Lab 3/Data/elevation_GYE.tif"</span>)</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>ecoreg <span class="ot">&lt;-</span> <span class="fu">vect</span>(<span class="st">"Z:/Teaching/BIOE515_LandEcol_Man_Fall2025/Labs/Lab 3/Data/us_eco_l4_GYE.shp"</span>)  </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Notice that <code>bird</code>, <code>npp</code>, and <code>elev</code> (bird richness, NPP, and elevation) area all raster files (geotiffs, .tif), but <code>ecoreg</code> (ecoregions) is a vector (shapefile, .shp). Go ahead and plot <code>ecoreg</code>, which will show you the <a href="https://www.epa.gov/eco-research/level-iii-and-iv-ecoregions-continental-united-states">level 4 ecoregions from the EPA</a>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ecoreg)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lab-3_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>We want to be able to use these data in a raster stack (which stores many raster layers in one R object). Raster stacks are really awesome, but you have to do some adjustments of your data before R will let you stack rasters. The adjustments include making sure that the <code>crs</code> (coordinate reference systems) and the extents are all the same. This takes some work, but it is worth it. In our case, let’s turn those ecoregions into a raster dataset. We’ll use <code>rasterize</code>, which allows you to match the raster resolution and extent to an existing raster. In this case, we’ll use elevation as our standard raster and assign each pixel the variable “US_L4CODE” (which is the unique code for level 4 ecoregions). Rasterize and then plot the new raster version of ecoregions for the GYE.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>ecor_gyeRast <span class="ot">&lt;-</span> <span class="fu">rasterize</span>(ecoreg, elev, <span class="at">field =</span> <span class="st">"US_L4CODE"</span>) </span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ecor_gyeRast)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lab-3_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>We will stack these rasters up using the well-used way to combine or concatenate <code>c()</code> data in R. Remove the <code>#</code> and run this.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># stack &lt;- c(elev, bird, npp, ecor_gyeRast)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>This should throw an error indicating that the extents do not match. Before we can stack elevation, bird richness, NPP, and ecoregion data, we’ll need to check their coordinate reference systems (<code>crs</code>) and possibly project the data into a common <code>crs</code>. ArcGIS Pro allows you to be really sloppy with this and projects layers “on the fly” without making you reproject the data. We will first check to see if the <code>crs</code> and the extent (<code>ext</code>) of each layer matches using <code>==</code> (are they equal?). We’ll use elevation as our base map.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">crs</span>(elev) <span class="sc">==</span> <span class="fu">crs</span>(bird) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">crs</span>(elev) <span class="sc">==</span> <span class="fu">crs</span>(npp) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">crs</span>(elev) <span class="sc">==</span> <span class="fu">crs</span>(ecor_gyeRast)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ext</span>(elev) <span class="sc">==</span> <span class="fu">ext</span>(bird) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ext</span>(elev) <span class="sc">==</span> <span class="fu">ext</span>(npp) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ext</span>(elev) <span class="sc">==</span> <span class="fu">ext</span>(ecor_gyeRast)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+</div>
+<p>It looks like the elevation and bird richness data do not have the same <code>crs</code> and NPP and elevation don’t have the same extent. We will use <code>project</code> to match bird richness with elevation and NPP with elevation. <code>project</code> allows you to specific how to resample the data so that the grids match perfectly. We’ll use <code>method = "bilinear"</code>, which stands for bilinear interpolation. This is a bit like averaging adjacent pixels to resample, but bilinear interpolation calculate a weighted average based on the locations of 9 closest adjacent pixels. This is a very common resampling method. Notice the name I’m giving the new objects includes PRJ (this tells me that this one has been projected). This step might take some time.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>birdPRJ <span class="ot">&lt;-</span> <span class="fu">project</span>(bird, elev, <span class="at">method =</span> <span class="st">"bilinear"</span>) </span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>nppPRJ <span class="ot">&lt;-</span> <span class="fu">project</span>(npp, elev, <span class="at">method =</span> <span class="st">"bilinear"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+|---------|---------|---------|---------|
+=========================================
+                                          </code></pre>
+</div>
+</div>
+<p>Now, let’s try to stack these again, being careful to use the correct objects.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>stack <span class="ot">&lt;-</span> <span class="fu">c</span>(elev, birdPRJ, nppPRJ, ecor_gyeRast)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>That should’ve worked. Now, plot these to make sure things look right.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(stack)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lab-3_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Let’s simplify the names of these layers and replot them.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(stack) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"elevation"</span>, <span class="st">"bird_richness"</span>, <span class="st">"npp"</span>,  <span class="st">"ecoregion"</span>)</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(stack)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lab-3_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Now we are ready to so some analysis. If you have enough RAM, you can turn this entire stack into a dataframe using something like <code>stackDF &lt;- stack %&gt;% as.data.frame(xy = T)</code> that will make each pixel location a row and include longitude and longitude (from <code>xy = T</code>) and each variable (elevation, bird richness, npp, and ecoregion code) as a column. This can be powerful, but it is often prudent to take a sample of your data and then do analyses. Here, we will use <code>spatSample</code> in <code>terra</code> to randomly select 5000 pixel locations and turn these into a dataframe.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># take 5,000 random samples ignoring NAs, turn it into a dataframe, and add the coordinates (xy = TRUE)</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>stackSamp <span class="ot">&lt;-</span> <span class="fu">spatSample</span>(stack, <span class="at">size =</span> <span class="dv">5000</span>, <span class="at">method =</span> <span class="st">"random"</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>, <span class="at">as.data.frame =</span> <span class="cn">TRUE</span>, <span class="at">xy =</span> <span class="cn">TRUE</span>) </span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="co"># look at the top of the dataframe</span></span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(stackSamp)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>         x       y elevation bird_richness     npp ecoregion
+1 -1123140 2537520      2804      37.91793 1753.00       17h
+2 -1042200 2272620      2035      59.00000 1685.25       18d
+3 -1166400 2305080      2415      61.65867 1982.75       17g
+4 -1234110 2524830      2331      65.26822 6201.25       17d
+5 -1101870 2526420      2359      68.00000 5086.50      17ao
+6 -1226130 2316540      2108      70.35332 7152.00       17o</code></pre>
+</div>
+</div>
+<p>Now, let’s look the relationship between bird richness and NPP using a simple scatterplot. Notice that I am dividing NPP by 10000. I need to make this adjustment to ensure that the <a href="https://developers.google.com/earth-engine/datasets/catalog/UMT_NTSG_v2_LANDSAT_NPP#bands">units are correct</a>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make a scatterplot: elevation vs. NPP</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(stackSamp<span class="sc">$</span>npp<span class="sc">/</span><span class="dv">10000</span>, stackSamp<span class="sc">$</span>bird_richness,</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"NPP (kg C/m²/yr)"</span>,</span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">"Bird richness"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lab-3_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Let’s make this a nicer looking graph in ggplot.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>stackSamp <span class="sc">%&gt;%</span>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> npp<span class="sc">/</span><span class="dv">10000</span>, <span class="at">y =</span> bird_richness)) <span class="sc">+</span> </span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.15</span>) <span class="sc">+</span> </span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"NPP (kg C/m²/yr)"</span>, <span class="at">y =</span> <span class="st">"Bird richness"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lab-3_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Interpret the relationship between NPP and bird richness across the GYE. Do you think this relationship would change if we investigated these patterns within different ecoregions? Let’s do this by adding ecoregion as a “facet” using <code>facet_wrap</code>. This kind of data stratification (grouping your data by meaningful categories) is very easy with raster stacks in R and <code>ggplot2</code>. This is a simple way of grouping your data and subsampling a smaller geographic area. It is an ecologically meaningful way to evaluate whether your overall patterns change with extent.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>stackSamp <span class="sc">%&gt;%</span>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> npp<span class="sc">/</span><span class="dv">10000</span>, <span class="at">y =</span> bird_richness)) <span class="sc">+</span> </span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.15</span>) <span class="sc">+</span> </span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> ecoregion) <span class="sc">+</span></span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"NPP (kg C/m²/yr)"</span>, <span class="at">y =</span> <span class="st">"Bird richness"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lab-3_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>There’s a lot to consider here, but the patterns do look different for different ecoregions. Let’s do the same thing but using elevation as the facet (i.e., split the data into groups based on their elevation). To to this, we need to turn elevation into an ordinal variable. We will do this using <code>ntile</code>, which is a very easy way to ‘bin’ data into quantiles. In this case, let’s use 10 quantiles (i.e., deciles, which breaks the data into 10 equal-sized grounds). This takes the <code>stackSamp</code> object and adds a variable named <code>elev_band</code> that is the output of <code>ntile</code>. <code>mutate</code> is a nice function in <code>dplyr</code> that allows you to add a variable to a dataframe. An alternative might be to <code>stackSamp$elev_band &lt;- ntile(stackSampe$elevation, 10)</code>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>stackSamp <span class="ot">&lt;-</span> stackSamp <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">elev_band =</span> <span class="fu">ntile</span>(elevation, <span class="dv">10</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Now, let’s replot NPP and bird richness by elevation bands.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>stackSamp <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> npp, <span class="at">y =</span> bird_richness)) <span class="sc">+</span> </span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.15</span>) <span class="sc">+</span> </span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> elev_band) <span class="sc">+</span></span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"NPP (kg C/m²/yr)"</span>, <span class="at">y =</span> <span class="st">"Bird richness"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lab-3_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Does your ecological interpretation of these patterns change with elevation?</p>
+<p><br>
+Now, let’s look at how changing the resolution (grain) of the data might affect these patterns. Let’s drop <code>ecoregion</code> so that all variables are quantitative (and not nominal like ecoregion). We’ll do this using the bracket notation of R. We’ll create a new stack called <code>stack1</code> that selects the 1st through 3rd layers in the original stack. We can do this using <code>stack[[1:3]]</code>. This method of subsetting data can be very helpful for data processing.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>stack1 <span class="ot">&lt;-</span> stack[[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]]</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="co"># look to make sure we subset the layers we meant to</span></span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(stack1) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "elevation"     "bird_richness" "npp"          </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(stack1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lab-3_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Histograms are a really powerful and important way to visualize the distribution of the data. Histograms essentially provide a visual display of the frequency of observations for the range of values in your data. Histograms are patterns that can tell us something about processes. Are the data heavily skewed or rather normal? What processes would give rise to a highly skewed dataset and what processes would give rise to normal data? Those questions are beyond the scope of this lab, but looking at the histograms of your data can be very revealing and is essential for doing some parametric statistical tests.</p>
+<p>We will look at the histograms for elevation, bird richness, and NPP data and look to see how they might change with the resolution of the spatial data. We also want to look at some summary statistics like the minimum value, the maximum value, the mean, median, and variance.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># first we'll plot the histogram </span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(stack1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: [hist] a sample of 1% of the cells was used (of which 33% was NA)
+Warning: [hist] a sample of 1% of the cells was used (of which 33% was NA)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: [hist] a sample of 1% of the cells was used (of which 37% was NA)</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lab-3_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co"># look at the summary of values</span></span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(stack1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: [summary] used a sample</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   elevation     bird_richness         npp       
+ Min.   :1214    Min.   :  1.00   Min.   :    0  
+ 1st Qu.:1949    1st Qu.: 53.42   1st Qu.: 1866  
+ Median :2280    Median : 58.82   Median : 2855  
+ Mean   :2295    Mean   : 57.07   Mean   : 3421  
+ 3rd Qu.:2613    3rd Qu.: 65.12   3rd Qu.: 5021  
+ Max.   :4131    Max.   :126.82   Max.   :11460  
+ NA's   :33476   NA's   :33630    NA's   :37262  </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate the variance</span></span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a><span class="fu">global</span>(stack1, var, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                 elevation
+elevation      229109.9442
+bird_richness     273.6427
+npp           3700373.1314</code></pre>
+</div>
+</div>
+<p>Now, let’s coarsen the resolution of the spatial data (increasing the size of pixels) using the <code>aggregage</code> function. We’ll start with the factor of 10 (<code>fact = 10</code>), which will increase the 30-meter data to 300-meter, by taking the mean of the smaller pixels using <code>fun = mean</code>, and ignore the NAs in the data using <code>na.rm=TRUE</code>. We’ll call this new stack <code>stk_10</code> to denote the factor.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>stk_10 <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(stack1, <span class="at">fact =</span> <span class="dv">10</span>, <span class="at">fun =</span> mean, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+|---------|---------|---------|---------|
+=========================================
+                                          </code></pre>
+</div>
+</div>
+<p>Now, let’s look at the maps, histograms, and summary statistics of the coarser data and compare these to the summary stats using the 30-meter data.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="co"># maps</span></span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(stk_10) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lab-3_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="co"># histograms</span></span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(stk_10)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: [hist] a sample of 65% of the cells was used (of which 33% was NA)
+Warning: [hist] a sample of 65% of the cells was used (of which 33% was NA)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: [hist] a sample of 65% of the cells was used (of which 34% was NA)</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lab-3_files/figure-html/unnamed-chunk-27-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="co"># summary stats</span></span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(stk_10)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: [summary] used a sample</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   elevation     bird_richness         npp       
+ Min.   :1207    Min.   :  6.22   Min.   :    0  
+ 1st Qu.:1949    1st Qu.: 54.05   1st Qu.: 1979  
+ Median :2279    Median : 59.40   Median : 3046  
+ Mean   :2294    Mean   : 57.06   Mean   : 3373  
+ 3rd Qu.:2613    3rd Qu.: 64.97   3rd Qu.: 4723  
+ Max.   :4069    Max.   :117.72   Max.   :11304  
+ NA's   :33311   NA's   :33437    NA's   :34100  </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="co"># variance</span></span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a><span class="fu">global</span>(stk_10, var, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                elevation
+elevation      228660.631
+bird_richness     222.652
+npp           3060838.110</code></pre>
+</div>
+</div>
+<p>Now, let’s look to see if the relationship between NPP and bird richness changes with this change in grain.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(stk_10<span class="sc">$</span>npp, stk_10<span class="sc">$</span>bird_richness)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: [plot] plot used a sample of 6.6% of the cells. You can use "maxcell"
+to increase the sample)</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Lab-3_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Did the relationship change?</p>
+<div class="callout callout-style-simple callout-important">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>TASK 2 (30 points).</strong></p>
+<p>Change the resolution of the elevation, NPP, and bird diversity data using 2 different factors (not the ones we already used) and investigate the summary statistics, histograms, and relationship between NPP and bird richness. Organize your figures and tables, interpret the results, and write a short abstract on your findings. Please turn in your abstract (no more than 250 words, following the format in <em>Landscape Ecology),</em> as well as any figures or tables you made.</p>
+</div>
+</div>
+</div>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
