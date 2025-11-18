@@ -3570,836 +3570,20 @@ window.Quarto = {
 <span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Look at the first few rows of data use View(trees_df) if you want to look at the </span></span>
 <span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="co"># entire dataset</span></span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(trees_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>          x       y Abies_amabilis_spp11 Abies_balsamea_spp12
-5  -2131217 3147542                    1                    0
-6  -2081217 3147542                    1                    0
-8  -1981217 3147542                    1                    0
-9  -1931217 3147542                    1                    0
-10 -1881217 3147542                    1                    0
-11 -1831217 3147542                    1                    0
-   Abies_concolor_spp15 Abies_fraseri_spp16 Abies_grandis_spp17
-5                     0                   0                   0
-6                     0                   0                   1
-8                     1                   0                   1
-9                     1                   0                   1
-10                    1                   0                   1
-11                    0                   0                   1
-   Abies_lasiocarpa_spp19 Abies_magnifica_spp20 Abies_procera_spp22
-5                       0                     0                   1
-6                       0                     0                   1
-8                       0                     0                   1
-9                       1                     0                   1
-10                      1                     0                   1
-11                      1                     0                   1
-   Abies_shastensis_spp21 Abies_sp_spp10 Acacia_farnesiana_spp303
-5                       0              0                        0
-6                       0              0                        0
-8                       0              0                        0
-9                       0              0                        0
-10                      1              0                        0
-11                      0              0                        0
-   Acer_barbatum_spp311 Acer_glabrum_spp321 Acer_leucoderme_spp323
-5                     0                   0                      0
-6                     0                   1                      0
-8                     0                   0                      0
-9                     0                   1                      0
-10                    0                   1                      0
-11                    0                   1                      0
-   Acer_macrophyllum_spp312 Acer_negundo_spp313 Acer_nigrum_spp314
-5                         1                   0                  0
-6                         1                   0                  0
-8                         1                   0                  0
-9                         1                   0                  0
-10                        1                   0                  0
-11                        1                   0                  0
-   Acer_pensylvanicum_spp315 Acer_platanoides_spp320 Acer_rubrum_spp316
-5                          0                       0                  0
-6                          0                       0                  0
-8                          0                       0                  0
-9                          0                       0                  0
-10                         0                       0                  0
-11                         0                       0                  0
-   Acer_saccharinum_spp317 Acer_saccharum_spp318 Acer_sp_spp310
-5                        0                     0              0
-6                        0                     0              0
-8                        0                     0              0
-9                        0                     0              0
-10                       0                     0              0
-11                       0                     0              0
-   Acer_spicatum_spp319 Aesculus_californica_spp333 Aesculus_flava_spp332
-5                     0                           0                     0
-6                     0                           0                     0
-8                     0                           0                     0
-9                     0                           0                     0
-10                    0                           0                     0
-11                    0                           0                     0
-   Aesculus_glabra_spp331 Aesculus_glabra_spp334 Aesculus_sp_spp330
-5                       0                      0                  0
-6                       0                      0                  0
-8                       0                      0                  0
-9                       0                      0                  0
-10                      0                      0                  0
-11                      0                      0                  0
-   Aesculus_sylvatica_spp337 Ailanthus_altissima_spp341
-5                          0                          0
-6                          0                          0
-8                          0                          0
-9                          0                          0
-10                         0                          0
-11                         0                          0
-   Albizia_julibrissin_spp345 Alnus_glutinosa_spp355 Alnus_rubra_spp351
-5                           0                      0                  1
-6                           0                      0                  1
-8                           0                      0                  1
-9                           0                      0                  1
-10                          0                      0                  1
-11                          0                      0                  1
-   Alnus_sp_spp350 Amelanchier_arborea_spp357 Amelanchier_sanguinea_spp358
-5                0                          0                            0
-6                0                          0                            0
-8                0                          0                            0
-9                0                          0                            0
-10               0                          0                            0
-11               0                          0                            0
-   Amelanchier_sp_spp356 Annona_glabra_spp853 Arbutus_menziesii_spp361
-5                      0                    0                        1
-6                      0                    0                        1
-8                      0                    0                        1
-9                      0                    0                        1
-10                     0                    0                        1
-11                     0                    0                        1
-   Arbutus_xalapensis_spp363 Asimina_triloba_spp367 Avicennia_germinans_spp986
-5                          0                      0                          0
-6                          0                      0                          0
-8                          0                      0                          0
-9                          0                      0                          0
-10                         0                      0                          0
-11                         0                      0                          0
-   Betula_alleghaniensis_spp371 Betula_lenta_spp372 Betula_nigra_spp373
-5                             0                   0                   0
-6                             0                   0                   0
-8                             0                   0                   0
-9                             0                   0                   0
-10                            0                   0                   0
-11                            0                   0                   0
-   Betula_papyrifera_spp375 Betula_populifolia_spp379 Betula_sp_spp370
-5                         0                         0                0
-6                         0                         0                0
-8                         1                         0                0
-9                         1                         0                0
-10                        1                         0                0
-11                        1                         0                0
-   Bursera_simaruba_spp854 Calocedrus_decurrens_spp81
-5                        0                          0
-6                        0                          0
-8                        0                          1
-9                        0                          1
-10                       0                          0
-11                       0                          0
-   Carpinus_caroliniana_spp391 Carya_alba_spp409 Carya_aquatica_spp401
-5                            0                 0                     0
-6                            0                 0                     0
-8                            0                 0                     0
-9                            0                 0                     0
-10                           0                 0                     0
-11                           0                 0                     0
-   Carya_carolinaeseptentrionalis_spp413 Carya_cordiformis_spp402
-5                                      0                        0
-6                                      0                        0
-8                                      0                        0
-9                                      0                        0
-10                                     0                        0
-11                                     0                        0
-   Carya_glabra_spp403 Carya_illinoinensis_spp404 Carya_laciniosa_spp405
-5                    0                          0                      0
-6                    0                          0                      0
-8                    0                          0                      0
-9                    0                          0                      0
-10                   0                          0                      0
-11                   0                          0                      0
-   Carya_myristiciformis_spp406 Carya_ovalis_spp412 Carya_ovata_spp407
-5                             0                   0                  0
-6                             0                   0                  0
-8                             0                   0                  0
-9                             0                   0                  0
-10                            0                   0                  0
-11                            0                   0                  0
-   Carya_pallida_spp410 Carya_sp_spp400 Carya_texana_spp408
-5                     0               0                   0
-6                     0               0                   0
-8                     0               0                   0
-9                     0               0                   0
-10                    0               0                   0
-11                    0               0                   0
-   Castanea_dentata_spp421 Castanea_mollissima_spp424 Castanea_pumila_spp422
-5                        0                          0                      0
-6                        0                          0                      0
-8                        0                          0                      0
-9                        0                          0                      0
-10                       0                          0                      0
-11                       0                          0                      0
-   Castanea_pumila_spp423 Castanea_sp_spp420 Casuarina_lepidophloia_spp857
-5                       0                  0                             0
-6                       0                  0                             0
-8                       0                  0                             0
-9                       0                  0                             0
-10                      0                  0                             0
-11                      0                  0                             0
-   Catalpa_bignonioides_spp451 Catalpa_sp_spp450 Catalpa_speciosa_spp452
-5                            0                 0                       0
-6                            0                 0                       0
-8                            0                 0                       0
-9                            0                 0                       0
-10                           0                 0                       0
-11                           0                 0                       0
-   Celtis_laevigata_spp461 Celtis_laevigata_spp463 Celtis_occidentalis_spp462
-5                        0                       0                          0
-6                        0                       0                          0
-8                        0                       0                          0
-9                        0                       0                          0
-10                       0                       0                          0
-11                       0                       0                          0
-   Celtis_sp_spp460 Cercis_canadensis_spp471 Chamaecyparis_lawsoniana_spp41
-5                 0                        0                              0
-6                 0                        0                              0
-8                 0                        0                              0
-9                 0                        0                              0
-10                0                        0                              0
-11                0                        0                              0
-   Chamaecyparis_nootkatensis_spp42 Chamaecyparis_thyoides_spp43
-5                                 0                            0
-6                                 0                            0
-8                                 1                            0
-9                                 1                            0
-10                                1                            0
-11                                1                            0
-   Cinnamomum_camphora_spp858 Citrus_sp_spp860 Cladrastis_kentukea_spp481
-5                           0                0                          0
-6                           0                0                          0
-8                           0                0                          0
-9                           0                0                          0
-10                          0                0                          0
-11                          0                0                          0
-   Condalia_hookeri_spp867 Conocarpus_erectus_spp987 Cornus_florida_spp491
-5                        0                         0                     0
-6                        0                         0                     0
-8                        0                         0                     0
-9                        0                         0                     0
-10                       0                         0                     0
-11                       0                         0                     0
-   Cotinus_obovatus_spp996 Crataegus_crusgalli_spp501 Crataegus_mollis_spp502
-5                        0                          0                       0
-6                        0                          0                       0
-8                        0                          0                       0
-9                        0                          0                       0
-10                       0                          0                       0
-11                       0                          0                       0
-   Crataegus_sp_spp500 Diospyros_sp_spp520 Diospyros_texana_spp522
-5                    0                   0                       0
-6                    0                   0                       0
-8                    0                   0                       0
-9                    0                   0                       0
-10                   0                   0                       0
-11                   0                   0                       0
-   Diospyros_virginiana_spp521 Ehretia_anacua_spp523
-5                            0                     0
-6                            0                     0
-8                            0                     0
-9                            0                     0
-10                           0                     0
-11                           0                     0
-   Elaeagnus_angustifolia_spp997 Eucalyptus_grandis_spp513 Eucalyptus_sp_spp510
-5                              0                         0                    0
-6                              0                         0                    0
-8                              0                         0                    0
-9                              0                         0                    0
-10                             0                         0                    0
-11                             0                         0                    0
-   Eugenia_rhombea_spp873 Fagus_grandifolia_spp531 Family_Arecaceae_spp915
-5                       0                        0                       0
-6                       0                        0                       0
-8                       0                        0                       0
-9                       0                        0                       0
-10                      0                        0                       0
-11                      0                        0                       0
-   Ficus_aurea_spp876 Fraxinus_americana_spp541 Fraxinus_caroliniana_spp548
-5                   0                         0                           0
-6                   0                         0                           0
-8                   0                         0                           0
-9                   0                         0                           0
-10                  0                         0                           0
-11                  0                         0                           0
-   Fraxinus_latifolia_spp542 Fraxinus_nigra_spp543
-5                          0                     0
-6                          0                     0
-8                          1                     0
-9                          1                     0
-10                         0                     0
-11                         0                     0
-   Fraxinus_pennsylvanica_spp544 Fraxinus_profunda_spp545
-5                              0                        0
-6                              0                        0
-8                              0                        0
-9                              0                        0
-10                             0                        0
-11                             0                        0
-   Fraxinus_quadrangulata_spp546 Fraxinus_sp_spp540 Fraxinus_texensis_spp549
-5                              0                  0                        0
-6                              0                  0                        0
-8                              0                  0                        0
-9                              0                  0                        0
-10                             0                  0                        0
-11                             0                  0                        0
-   Ginkgo_biloba_spp561 Gleditsia_aquatica_spp551 Gleditsia_sp_spp550
-5                     0                         0                   0
-6                     0                         0                   0
-8                     0                         0                   0
-9                     0                         0                   0
-10                    0                         0                   0
-11                    0                         0                   0
-   Gleditsia_triacanthos_spp552 Gordonia_lasianthus_spp555
-5                             0                          0
-6                             0                          0
-8                             0                          0
-9                             0                          0
-10                            0                          0
-11                            0                          0
-   Gymnocladus_dioicus_spp571 Halesia_carolina_spp581 Halesia_diptera_spp582
-5                           0                       0                      0
-6                           0                       0                      0
-8                           0                       0                      0
-9                           0                       0                      0
-10                          0                       0                      0
-11                          0                       0                      0
-   Halesia_sp_spp580 Ilex_opaca_spp591 Juglans_cinerea_spp601
-5                  0                 0                      0
-6                  0                 0                      0
-8                  0                 1                      0
-9                  0                 1                      0
-10                 0                 0                      0
-11                 0                 0                      0
-   Juglans_major_spp606 Juglans_microcarpa_spp605 Juglans_nigra_spp602
-5                     0                         0                    0
-6                     0                         0                    0
-8                     0                         0                    0
-9                     0                         0                    0
-10                    0                         0                    0
-11                    0                         0                    0
-   Juglans_sp_spp600 Juniperus_ashei_spp61 Juniperus_coahuilensis_spp59
-5                  0                     0                            0
-6                  0                     0                            0
-8                  0                     0                            0
-9                  0                     0                            0
-10                 0                     0                            0
-11                 0                     0                            0
-   Juniperus_deppeana_spp63 Juniperus_flaccida_spp60 Juniperus_monosperma_spp69
-5                         0                        0                          0
-6                         0                        0                          0
-8                         0                        0                          0
-9                         0                        0                          0
-10                        0                        0                          0
-11                        0                        0                          0
-   Juniperus_occidentalis_spp64 Juniperus_osteosperma_spp65
-5                             0                           0
-6                             0                           0
-8                             0                           0
-9                             0                           0
-10                            0                           0
-11                            0                           0
-   Juniperus_pinchotii_spp58 Juniperus_scopulorum_spp66 Juniperus_sp_spp57
-5                          0                          0                  0
-6                          0                          0                  0
-8                          0                          0                  0
-9                          0                          0                  0
-10                         0                          0                  0
-11                         0                          0                  0
-   Juniperus_virginiana_spp67 Juniperus_virginiana_spp68
-5                           0                          0
-6                           0                          0
-8                           0                          0
-9                           0                          0
-10                          0                          0
-11                          0                          0
-   Laguncularia_racemosa_spp988 Larix_laricina_spp71 Larix_occidentalis_spp73
-5                             0                    0                        0
-6                             0                    0                        0
-8                             0                    0                        0
-9                             0                    0                        0
-10                            0                    0                        1
-11                            0                    0                        1
-   Larix_sp_spp70 Liquidambar_styraciflua_spp611 Liriodendron_tulipifera_spp621
-5               0                              0                              0
-6               0                              0                              0
-8               0                              0                              0
-9               0                              0                              0
-10              0                              0                              0
-11              0                              0                              0
-   Lithocarpus_densiflorus_spp631 Maclura_pomifera_spp641
-5                               0                       0
-6                               0                       0
-8                               1                       0
-9                               0                       0
-10                              0                       0
-11                              0                       0
-   Magnolia_acuminata_spp651 Magnolia_fraseri_spp655
-5                          0                       0
-6                          0                       0
-8                          0                       0
-9                          0                       0
-10                         0                       0
-11                         0                       0
-   Magnolia_grandiflora_spp652 Magnolia_macrophylla_spp654 Magnolia_sp_spp650
-5                            0                           0                  0
-6                            0                           0                  0
-8                            0                           0                  0
-9                            0                           0                  0
-10                           0                           0                  0
-11                           0                           0                  0
-   Magnolia_tripetala_spp658 Magnolia_virginiana_spp653
-5                          0                          0
-6                          0                          0
-8                          0                          0
-9                          0                          0
-10                         0                          0
-11                         0                          0
-   Malus_angustifolia_spp662 Malus_coronaria_spp663 Malus_fusca_spp661
-5                          0                      0                  1
-6                          0                      0                  1
-8                          0                      0                  0
-9                          0                      0                  1
-10                         0                      0                  1
-11                         0                      0                  0
-   Malus_ioensis_spp664 Malus_sp_spp660 Melaleuca_quinquenervia_spp992
-5                     0               0                              0
-6                     0               0                              0
-8                     0               0                              0
-9                     0               0                              0
-10                    0               0                              0
-11                    0               0                              0
-   Melia_azedarach_spp993 Metopium_toxiferum_spp886 Morus_alba_spp681
-5                       0                         0                 0
-6                       0                         0                 0
-8                       0                         0                 0
-9                       0                         0                 0
-10                      0                         0                 0
-11                      0                         0                 0
-   Morus_microphylla_spp683 Morus_rubra_spp682 Morus_sp_spp680
-5                         0                  0               0
-6                         0                  0               0
-8                         0                  0               0
-9                         0                  0               0
-10                        0                  0               0
-11                        0                  0               0
-   Nyssa_aquatica_spp691 Nyssa_biflora_spp694 Nyssa_ogeche_spp692
-5                      0                    0                   0
-6                      0                    0                   0
-8                      0                    0                   0
-9                      0                    0                   0
-10                     0                    0                   0
-11                     0                    0                   0
-   Nyssa_sp_spp690 Nyssa_sylvatica_spp693 Ostrya_virginiana_spp701
-5                0                      0                        0
-6                0                      0                        0
-8                0                      0                        0
-9                0                      0                        0
-10               0                      0                        0
-11               0                      0                        0
-   Oxydendrum_arboreum_spp711 Paulownia_tomentosa_spp712 Persea_borbonia_spp721
-5                           0                          0                      0
-6                           0                          0                      0
-8                           0                          0                      0
-9                           0                          0                      0
-10                          0                          0                      0
-11                          0                          0                      0
-   Persea_sp_spp720 Picea_abies_spp91 Picea_engelmannii_spp93
-5                 0                 0                       0
-6                 0                 0                       0
-8                 0                 0                       0
-9                 0                 0                       1
-10                0                 0                       1
-11                0                 0                       1
-   Picea_glauca_spp94 Picea_mariana_spp95 Picea_pungens_spp96
-5                   0                   0                   0
-6                   0                   0                   0
-8                   0                   0                   0
-9                   0                   0                   0
-10                  0                   0                   0
-11                  0                   0                   0
-   Picea_rubens_spp97 Picea_sitchensis_spp98 Picea_sp_spp90
-5                   0                      1              0
-6                   0                      1              0
-8                   0                      1              0
-9                   0                      1              0
-10                  0                      1              0
-11                  0                      1              0
-   Pinus_albicaulis_spp101 Pinus_banksiana_spp105 Pinus_cembroides_spp140
-5                        0                      0                       0
-6                        0                      0                       0
-8                        0                      0                       0
-9                        1                      0                       0
-10                       1                      0                       0
-11                       1                      0                       0
-   Pinus_clausa_spp107 Pinus_contorta_spp108 Pinus_echinata_spp110
-5                    0                     1                     0
-6                    0                     1                     0
-8                    0                     1                     0
-9                    0                     1                     0
-10                   0                     1                     0
-11                   0                     1                     0
-   Pinus_edulis_spp106 Pinus_elliottii_spp111 Pinus_flexilis_spp113
-5                    0                      0                     0
-6                    0                      0                     0
-8                    0                      0                     0
-9                    0                      0                     0
-10                   0                      0                     0
-11                   0                      0                     0
-   Pinus_glabra_spp115 Pinus_jeffreyi_spp116 Pinus_lambertiana_spp117
-5                    0                     0                        0
-6                    0                     0                        0
-8                    0                     0                        1
-9                    0                     0                        1
-10                   0                     0                        0
-11                   0                     0                        0
-   Pinus_monophylla_spp133 Pinus_monticola_spp119 Pinus_nigra_spp136
-5                        0                      1                  0
-6                        0                      0                  0
-8                        0                      1                  0
-9                        0                      1                  0
-10                       0                      1                  0
-11                       0                      1                  0
-   Pinus_palustris_spp121 Pinus_ponderosa_spp122 Pinus_pungens_spp123
-5                       0                      0                    0
-6                       0                      0                    0
-8                       0                      1                    0
-9                       0                      1                    0
-10                      0                      1                    0
-11                      0                      1                    0
-   Pinus_remota_spp141 Pinus_resinosa_spp125 Pinus_rigida_spp126
-5                    0                     0                   0
-6                    0                     0                   0
-8                    0                     0                   0
-9                    0                     0                   0
-10                   0                     0                   0
-11                   0                     0                   0
-   Pinus_serotina_spp128 Pinus_sp_spp100 Pinus_strobus_spp129
-5                      0               0                    0
-6                      0               0                    0
-8                      0               0                    0
-9                      0               0                    0
-10                     0               0                    0
-11                     0               0                    0
-   Pinus_sylvestris_spp130 Pinus_taeda_spp131 Pinus_virginiana_spp132
-5                        0                  0                       0
-6                        0                  0                       0
-8                        0                  0                       0
-9                        0                  0                       0
-10                       0                  0                       0
-11                       0                  0                       0
-   Piscidia_piscipula_spp887 Planera_aquatica_spp722
-5                          0                       0
-6                          0                       0
-8                          0                       0
-9                          0                       0
-10                         0                       0
-11                         0                       0
-   Platanus_occidentalis_spp731 Platanus_sp_spp729 Populus_alba_spp752
-5                             0                  0                   0
-6                             0                  0                   0
-8                             0                  0                   0
-9                             0                  0                   0
-10                            0                  0                   0
-11                            0                  0                   0
-   Populus_balsamifera_spp741 Populus_balsamifera_spp747
-5                           0                          1
-6                           0                          1
-8                           0                          1
-9                           0                          1
-10                          0                          1
-11                          0                          1
-   Populus_deltoides_spp742 Populus_deltoides_spp745
-5                         0                        0
-6                         0                        0
-8                         0                        0
-9                         0                        0
-10                        0                        0
-11                        0                        0
-   Populus_grandidentata_spp743 Populus_heterophylla_spp744
-5                             0                           0
-6                             0                           0
-8                             0                           0
-9                             0                           0
-10                            0                           0
-11                            0                           0
-   Populus_nigra_spp753 Populus_sp_spp740 Populus_tremuloides_spp746
-5                     0                 0                          0
-6                     0                 0                          0
-8                     0                 0                          0
-9                     0                 0                          0
-10                    0                 0                          1
-11                    0                 0                          1
-   Prosopis_glandulosa_spp756 Prosopis_pubescens_spp758 Prosopis_sp_spp755
-5                           0                         0                  0
-6                           0                         0                  0
-8                           0                         0                  0
-9                           0                         0                  0
-10                          0                         0                  0
-11                          0                         0                  0
-   Prunus_americana_spp766 Prunus_avium_spp771 Prunus_nigra_spp765
-5                        0                   0                   0
-6                        0                   0                   0
-8                        0                   0                   0
-9                        0                   0                   0
-10                       0                   0                   0
-11                       0                   0                   0
-   Prunus_pensylvanica_spp761 Prunus_persica_spp764 Prunus_serotina_spp762
-5                           0                     0                      0
-6                           0                     0                      0
-8                           0                     0                      0
-9                           0                     0                      0
-10                          0                     0                      0
-11                          0                     0                      0
-   Prunus_sp_spp760 Prunus_virginiana_spp763 Pseudotsuga_menziesii_spp202
-5                 0                        0                            1
-6                 0                        0                            1
-8                 1                        0                            1
-9                 0                        1                            1
-10                0                        1                            1
-11                0                        0                            1
-   Quercus_alba_spp802 Quercus_bicolor_spp804 Quercus_chrysolepis_spp805
-5                    0                      0                          0
-6                    0                      0                          0
-8                    0                      0                          1
-9                    0                      0                          0
-10                   0                      0                          0
-11                   0                      0                          0
-   Quercus_coccinea_spp806 Quercus_ellipsoidalis_spp809 Quercus_emoryi_spp810
-5                        0                            0                     0
-6                        0                            0                     0
-8                        0                            0                     0
-9                        0                            0                     0
-10                       0                            0                     0
-11                       0                            0                     0
-   Quercus_falcata_spp812 Quercus_gambelii_spp814 Quercus_grisea_spp846
-5                       0                       0                     0
-6                       0                       0                     0
-8                       0                       0                     0
-9                       0                       0                     0
-10                      0                       0                     0
-11                      0                       0                     0
-   Quercus_hypoleucoides_spp843 Quercus_ilicifolia_spp816
-5                             0                         0
-6                             0                         0
-8                             0                         0
-9                             0                         0
-10                            0                         0
-11                            0                         0
-   Quercus_imbricaria_spp817 Quercus_incana_spp842 Quercus_kelloggii_spp818
-5                          0                     0                        0
-6                          0                     0                        0
-8                          0                     0                        1
-9                          0                     0                        0
-10                         0                     0                        0
-11                         0                     0                        0
-   Quercus_laevis_spp819 Quercus_laurifolia_spp820 Quercus_lyrata_spp822
-5                      0                         0                     0
-6                      0                         0                     0
-8                      0                         0                     0
-9                      0                         0                     0
-10                     0                         0                     0
-11                     0                         0                     0
-   Quercus_macrocarpa_spp823 Quercus_margarettiae_spp840
-5                          0                           0
-6                          0                           0
-8                          0                           0
-9                          0                           0
-10                         0                           0
-11                         0                           0
-   Quercus_marilandica_spp824 Quercus_michauxii_spp825 Quercus_minima_spp841
-5                           0                        0                     0
-6                           0                        0                     0
-8                           0                        0                     0
-9                           0                        0                     0
-10                          0                        0                     0
-11                          0                        0                     0
-   Quercus_muehlenbergii_spp826 Quercus_nigra_spp827
-5                             0                    0
-6                             0                    0
-8                             0                    0
-9                             0                    0
-10                            0                    0
-11                            0                    0
-   Quercus_oglethorpensis_spp844 Quercus_pagoda_spp813 Quercus_palustris_spp830
-5                              0                     0                        0
-6                              0                     0                        0
-8                              0                     0                        0
-9                              0                     0                        0
-10                             0                     0                        0
-11                             0                     0                        0
-   Quercus_phellos_spp831 Quercus_prinoides_spp845 Quercus_prinus_spp832
-5                       0                        0                     0
-6                       0                        0                     0
-8                       0                        0                     0
-9                       0                        0                     0
-10                      0                        0                     0
-11                      0                        0                     0
-   Quercus_rubra_spp833 Quercus_shumardii_spp834 Quercus_similis_spp836
-5                     0                        0                      0
-6                     0                        0                      0
-8                     0                        0                      0
-9                     0                        0                      0
-10                    0                        0                      0
-11                    0                        0                      0
-   Quercus_sinuata_spp808 Quercus_sp_spp800 Quercus_stellata_spp835
-5                       0                 0                       0
-6                       0                 0                       0
-8                       0                 0                       0
-9                       0                 0                       0
-10                      0                 0                       0
-11                      0                 0                       0
-   Quercus_texana_spp828 Quercus_velutina_spp837 Quercus_virginiana_spp838
-5                      0                       0                         0
-6                      0                       0                         0
-8                      0                       0                         0
-9                      0                       0                         0
-10                     0                       0                         0
-11                     0                       0                         0
-   Rhizophora_mangle_spp989 Robinia_pseudoacacia_spp901 Roystonea_sp_spp909
-5                         0                           0                   0
-6                         0                           0                   0
-8                         0                           1                   0
-9                         0                           1                   0
-10                        0                           0                   0
-11                        0                           0                   0
-   Sabal_palmetto_spp912 Salix_alba_spp927 Salix_amygdaloides_spp921
-5                      0                 0                         0
-6                      0                 0                         0
-8                      0                 0                         0
-9                      0                 0                         0
-10                     0                 0                         0
-11                     0                 0                         0
-   Salix_bebbiana_spp923 Salix_caroliniana_spp925 Salix_nigra_spp922
-5                      0                        0                  0
-6                      0                        0                  0
-8                      0                        0                  0
-9                      0                        0                  0
-10                     0                        0                  0
-11                     0                        0                  0
-   Salix_sepulcralis_spp929 Salix_sp_spp920 Sapindus_saponaria_spp919
-5                         0               0                         0
-6                         0               0                         0
-8                         0               0                         0
-9                         0               0                         0
-10                        0               0                         0
-11                        0               0                         0
-   Sassafras_albidum_spp931 Sequoia_sempervirens_spp211
-5                         0                           0
-6                         0                           0
-8                         0                           0
-9                         0                           0
-10                        0                           0
-11                        0                           0
-   Sequoiadendron_giganteum_spp212 Sideroxylon_lanuginosum_spp381
-5                                0                              0
-6                                0                              0
-8                                0                              0
-9                                0                              0
-10                               0                              0
-11                               0                              0
-   Sorbus_americana_spp935 Sorbus_aucuparia_spp936 Syzygium_cumini_spp896
-5                        0                       0                      0
-6                        0                       0                      0
-8                        0                       0                      0
-9                        0                       0                      0
-10                       0                       0                      0
-11                       0                       0                      0
-   Tamarix_sp_spp991 Taxodium_ascendens_spp222 Taxodium_distichum_spp221
-5                  0                         0                         0
-6                  0                         0                         0
-8                  0                         0                         0
-9                  0                         0                         0
-10                 0                         0                         0
-11                 0                         0                         0
-   Thrinax_morrisii_spp913 Thuja_occidentalis_spp241 Thuja_plicata_spp242
-5                        0                         0                    1
-6                        0                         0                    1
-8                        0                         0                    1
-9                        0                         0                    1
-10                       0                         0                    1
-11                       0                         0                    1
-   Tilia_americana_spp951 Tilia_americana_spp952 Tilia_americana_spp953
-5                       0                      0                      0
-6                       0                      0                      0
-8                       0                      0                      0
-9                       0                      0                      0
-10                      0                      0                      0
-11                      0                      0                      0
-   Tilia_sp_spp950 Tree_broadleaf_spp998 Tree_evergreen_spp299
-5                0                     0                     0
-6                0                     0                     0
-8                0                     0                     0
-9                0                     0                     0
-10               0                     0                     0
-11               0                     0                     0
-   Tree_unknown_spp999 Triadica_sebifera_spp994 Tsuga_canadensis_spp261
-5                    0                        0                       0
-6                    0                        0                       0
-8                    0                        0                       0
-9                    0                        0                       0
-10                   0                        0                       0
-11                   0                        0                       0
-   Tsuga_caroliniana_spp262 Tsuga_heterophylla_spp263 Tsuga_mertensiana_spp264
-5                         0                         1                        0
-6                         0                         1                        0
-8                         0                         1                        0
-9                         0                         1                        1
-10                        0                         1                        1
-11                        0                         1                        1
-   Tsuga_sp_spp260 Ulmus_alata_spp971 Ulmus_americana_spp972
-5                0                  0                      0
-6                0                  0                      0
-8                0                  0                      0
-9                0                  0                      0
-10               0                  0                      0
-11               0                  0                      0
-   Ulmus_crassifolia_spp973 Ulmus_pumila_spp974 Ulmus_rubra_spp975
-5                         0                   0                  0
-6                         0                   0                  0
-8                         0                   0                  0
-9                         0                   0                  0
-10                        0                   0                  0
-11                        0                   0                  0
-   Ulmus_serotina_spp976 Ulmus_sp_spp970 Ulmus_thomasii_spp977
-5                      0               0                     0
-6                      0               0                     0
-8                      0               0                     0
-9                      0               0                     0
-10                     0               0                     0
-11                     0               0                     0
-   Umbellularia_californica_spp981 Vernicia_fordii_spp995
-5                                0                      0
-6                                0                      0
-8                                1                      0
-9                                0                      0
-10                               0                      0
-11                               0                      0</code></pre>
-</div>
-<details open class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># remove NAs in the dataset</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>trees_df <span class="ot">&lt;-</span> trees_df <span class="sc">%&gt;%</span> <span class="fu">drop_na</span>()</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co"># We need to remove the coordinates (x and y) before working in vegan</span></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>trees_df_noXY <span class="ot">&lt;-</span> trees_df <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(x, y))</span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Use vegan to calculate alpha diversity (mean richness per site)</span></span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> vegan<span class="sc">::</span><span class="fu">specnumber</span>(trees_df_noXY) </span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot a histogram and compare with the one you created above.</span></span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="co"># The should be the same</span></span>
-<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(alpha)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="co"># head(trees_df)</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="co"># remove NAs in the dataset</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>trees_df <span class="ot">&lt;-</span> trees_df <span class="sc">%&gt;%</span> <span class="fu">drop_na</span>()</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a><span class="co"># We need to remove the coordinates (x and y) before working in vegan</span></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>trees_df_noXY <span class="ot">&lt;-</span> trees_df <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(x, y))</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Use vegan to calculate alpha diversity (mean richness per site)</span></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> vegan<span class="sc">::</span><span class="fu">specnumber</span>(trees_df_noXY) </span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot a histogram and compare with the one you created above.</span></span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a><span class="co"># The should be the same</span></span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(alpha)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -4410,22 +3594,22 @@ window.Quarto = {
 </div>
 <details open class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Now, calculate mean alpha diversity for CONUS</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>mean_alpha <span class="ot">&lt;-</span> <span class="fu">mean</span>(alpha)</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co"># We can calculate gamma diversity (total richness across all sites). </span></span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="co"># colSums calculates how many locations each species is in. </span></span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="co"># If a species is completely absent from all sites then the sum is 0, of course.</span></span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="co"># summing the species with &gt; 0 occurences calculates the total number of species</span></span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="co"># in the site x species matrix. This can sometimes be calculated easily </span></span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="co"># by the total number of species in the data! </span></span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="co"># However, it is sometimes necessary to check in case some species have no records.</span></span>
-<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>gamma <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">colSums</span>(trees_df_noXY) <span class="sc">&gt;</span> <span class="dv">0</span>)</span>
-<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Now, we will use gamma diversity and mean alpha diversity to calculate beta diversity</span></span>
-<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>beta_mult <span class="ot">&lt;-</span> gamma <span class="sc">/</span> mean_alpha <span class="sc">-</span> <span class="dv">1</span>        <span class="co"># multiplicative beta</span></span>
-<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>beta_add  <span class="ot">&lt;-</span> gamma <span class="sc">-</span> mean_alpha         <span class="co"># additive beta</span></span>
-<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>beta_N <span class="ot">&lt;-</span> (gamma <span class="sc">-</span> mean_alpha) <span class="sc">/</span> gamma  <span class="co"># normalized beta diversity</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Now, calculate mean alpha diversity for CONUS</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>mean_alpha <span class="ot">&lt;-</span> <span class="fu">mean</span>(alpha)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># We can calculate gamma diversity (total richness across all sites). </span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co"># colSums calculates how many locations each species is in. </span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co"># If a species is completely absent from all sites then the sum is 0, of course.</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co"># summing the species with &gt; 0 occurences calculates the total number of species</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="co"># in the site x species matrix. This can sometimes be calculated easily </span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="co"># by the total number of species in the data! </span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="co"># However, it is sometimes necessary to check in case some species have no records.</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>gamma <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">colSums</span>(trees_df_noXY) <span class="sc">&gt;</span> <span class="dv">0</span>)</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Now, we will use gamma diversity and mean alpha diversity to calculate beta diversity</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>beta_mult <span class="ot">&lt;-</span> gamma <span class="sc">/</span> mean_alpha <span class="sc">-</span> <span class="dv">1</span>        <span class="co"># multiplicative beta</span></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>beta_add  <span class="ot">&lt;-</span> gamma <span class="sc">-</span> mean_alpha         <span class="co"># additive beta</span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>beta_N <span class="ot">&lt;-</span> (gamma <span class="sc">-</span> mean_alpha) <span class="sc">/</span> gamma  <span class="co"># normalized beta diversity</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -4436,20 +3620,20 @@ window.Quarto = {
 <div class="cell">
 <details open class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># run species accumulation and store the output in an object called spec_acc</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>spec_acc <span class="ot">&lt;-</span> <span class="fu">specaccum</span>(trees_df_noXY, <span class="at">method =</span> <span class="st">&quot;random&quot;</span>, <span class="at">permutations =</span> <span class="dv">100</span>)</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the species accumulation curve with a confidence interval based on the </span></span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="co"># variability among permutations</span></span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(spec_acc, <span class="at">ci.type =</span> <span class="st">&quot;poly&quot;</span>, <span class="at">col =</span> <span class="st">&quot;darkgreen&quot;</span>,</span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">ci.lty =</span> <span class="dv">0</span>, <span class="at">ci.col =</span> <span class="st">&quot;lightgreen&quot;</span>,</span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Number of grid cells sampled&quot;</span>,</span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Species richness&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># run species accumulation and store the output in an object called spec_acc</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>spec_acc <span class="ot">&lt;-</span> <span class="fu">specaccum</span>(trees_df_noXY, <span class="at">method =</span> <span class="st">&quot;random&quot;</span>, <span class="at">permutations =</span> <span class="dv">100</span>)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the species accumulation curve with a confidence interval based on the </span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="co"># variability among permutations</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(spec_acc, <span class="at">ci.type =</span> <span class="st">&quot;poly&quot;</span>, <span class="at">col =</span> <span class="st">&quot;darkgreen&quot;</span>,</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">ci.lty =</span> <span class="dv">0</span>, <span class="at">ci.col =</span> <span class="st">&quot;lightgreen&quot;</span>,</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Number of grid cells sampled&quot;</span>,</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Species richness&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img role="img" src="data:image/png;base64,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" class="img-fluid figure-img" width="672"></p>
+<p><img role="img" src="data:image/png;base64,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" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -4461,33 +3645,33 @@ window.Quarto = {
 <div class="cell">
 <details open class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Bring in ecoregion data</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>eco <span class="ot">&lt;-</span> <span class="fu">vect</span>(<span class="st">&quot;Z:/Teaching/BIOE515_LandEcol_Man_Fall2025/Labs/Lab 8/ecoregions_L3/us_eco_l3.shp&quot;</span>)</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co"># We use &quot;aggregate&quot; to &quot;disolve&quot; level 3 ecoregions into level 2 ecoregions</span></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>ecoL2 <span class="ot">&lt;-</span> eco <span class="sc">%&gt;%</span> <span class="fu">aggregate</span>(<span class="st">&quot;NA_L2NAME&quot;</span>)</span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert the terra vector object to an sf object</span></span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>ecoL2 <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(ecoL2)</span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Turn the vector data into a raster dataset and assign the pixels tha level 2 name.</span></span>
-<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>ecoL2rast <span class="ot">&lt;-</span> <span class="fu">rasterize</span>(ecoL2, st, <span class="at">field =</span> <span class="st">&quot;NA_L2NAME&quot;</span>)</span>
-<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Stack the biodiversity data with the ecoregion data. </span></span>
-<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a><span class="co"># We create a stack above called &quot;st&quot;. </span></span>
-<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a><span class="co"># We can stack this stack with the rasterized ecoregions.</span></span>
-<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>st_eco <span class="ot">&lt;-</span> <span class="fu">c</span>(st, ecoL2rast)</span>
-<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Turn this raster stack into a data frame </span></span>
-<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>st_ecoDF <span class="ot">&lt;-</span> st_eco <span class="sc">%&gt;%</span> <span class="fu">as.data.frame</span>(<span class="at">xy =</span> T)</span>
-<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a><span class="co"># We can create boxplots for each measure of biodiversity within ecoregions.</span></span>
-<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Alpha diversity among ecoregions.</span></span>
-<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a>st_ecoDF <span class="sc">%&gt;%</span> <span class="fu">drop_na</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(NA_L2NAME, alpha, <span class="at">FUN =</span> mean), <span class="at">y =</span> alpha)) <span class="sc">+</span></span>
-<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">&quot;grey&quot;</span>) <span class="sc">+</span></span>
-<span id="cb21-26"><a href="#cb21-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span>   <span class="co"># optional, makes it easier to read long names</span></span>
-<span id="cb21-27"><a href="#cb21-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Ecoregion&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Alpha diversity&quot;</span>) <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="do">#### Bring in ecoregion data</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>eco <span class="ot">&lt;-</span> <span class="fu">vect</span>(<span class="st">&quot;Z:/Teaching/BIOE515_LandEcol_Man_Fall2025/Labs/Lab 8/ecoregions_L3/us_eco_l3.shp&quot;</span>)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co"># We use &quot;aggregate&quot; to &quot;disolve&quot; level 3 ecoregions into level 2 ecoregions</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>ecoL2 <span class="ot">&lt;-</span> eco <span class="sc">%&gt;%</span> <span class="fu">aggregate</span>(<span class="st">&quot;NA_L2NAME&quot;</span>)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert the terra vector object to an sf object</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>ecoL2 <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(ecoL2)</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Turn the vector data into a raster dataset and assign the pixels tha level 2 name.</span></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>ecoL2rast <span class="ot">&lt;-</span> <span class="fu">rasterize</span>(ecoL2, st, <span class="at">field =</span> <span class="st">&quot;NA_L2NAME&quot;</span>)</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Stack the biodiversity data with the ecoregion data. </span></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a><span class="co"># We create a stack above called &quot;st&quot;. </span></span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a><span class="co"># We can stack this stack with the rasterized ecoregions.</span></span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>st_eco <span class="ot">&lt;-</span> <span class="fu">c</span>(st, ecoL2rast)</span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Turn this raster stack into a data frame </span></span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>st_ecoDF <span class="ot">&lt;-</span> st_eco <span class="sc">%&gt;%</span> <span class="fu">as.data.frame</span>(<span class="at">xy =</span> T)</span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a><span class="co"># We can create boxplots for each measure of biodiversity within ecoregions.</span></span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Alpha diversity among ecoregions.</span></span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a>st_ecoDF <span class="sc">%&gt;%</span> <span class="fu">drop_na</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(NA_L2NAME, alpha, <span class="at">FUN =</span> mean), <span class="at">y =</span> alpha)) <span class="sc">+</span></span>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">&quot;grey&quot;</span>) <span class="sc">+</span></span>
+<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span>   <span class="co"># optional, makes it easier to read long names</span></span>
+<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Ecoregion&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Alpha diversity&quot;</span>) <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -4498,12 +3682,12 @@ window.Quarto = {
 </div>
 <details open class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Local beta diversity among ecoregions.</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>st_ecoDF <span class="sc">%&gt;%</span> <span class="fu">drop_na</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(NA_L2NAME, beta, <span class="at">FUN =</span> mean), <span class="at">y =</span> beta)) <span class="sc">+</span></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">&quot;grey&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span>   <span class="co"># optional, makes it easier to read long names</span></span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Ecoregion&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Beta diversity&quot;</span>) <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Local beta diversity among ecoregions.</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>st_ecoDF <span class="sc">%&gt;%</span> <span class="fu">drop_na</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(NA_L2NAME, beta, <span class="at">FUN =</span> mean), <span class="at">y =</span> beta)) <span class="sc">+</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">&quot;grey&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span>   <span class="co"># optional, makes it easier to read long names</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Ecoregion&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Beta diversity&quot;</span>) <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -4514,12 +3698,12 @@ window.Quarto = {
 </div>
 <details open class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Rarity-weighted richness among ecoregions.</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>st_ecoDF <span class="sc">%&gt;%</span> <span class="fu">drop_na</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(NA_L2NAME, rwr, <span class="at">FUN =</span> mean), <span class="at">y =</span> rwr)) <span class="sc">+</span></span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">&quot;grey&quot;</span>) <span class="sc">+</span></span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span>   <span class="co"># optional, makes it easier to read long names</span></span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Ecoregion&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Rarity-weighted richness&quot;</span>)  <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Rarity-weighted richness among ecoregions.</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>st_ecoDF <span class="sc">%&gt;%</span> <span class="fu">drop_na</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">reorder</span>(NA_L2NAME, rwr, <span class="at">FUN =</span> mean), <span class="at">y =</span> rwr)) <span class="sc">+</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">&quot;grey&quot;</span>) <span class="sc">+</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span>   <span class="co"># optional, makes it easier to read long names</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Ecoregion&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Rarity-weighted richness&quot;</span>)  <span class="sc">+</span> <span class="fu">theme_bw</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -4535,7 +3719,7 @@ window.Quarto = {
 <i class="callout-icon no-icon"></i>
 </div>
 <div class="callout-body-container">
-<p><strong>TASK 1 (20 points).</strong></p>
+<p><strong>TASK 1 (40 points).</strong></p>
 <p>I have shared coarse data on mammals, birds, amphibians, and reptiles. Choose one of these four taxonomic groups and redo the analysis above to investigate patterns of alpha diversity, rarity-weighted richness, and local beta diversity among ecoregions. What are the causes and consequences of these patterns? Why do some places host high alpha diversity but low beta diversity and vice versa? Investigate the distribution of range sizes, mean alpha, gamma diversity, and “global” beta diversity, too. Write up your results as an abstract for <em>Landscape Ecology</em>.</p>
 </div>
 </div>
